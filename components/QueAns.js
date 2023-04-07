@@ -1,9 +1,11 @@
 import { useState } from "react";
 import styles from "./QueAns.module.css";
 import Cors from "cors";
+import { useRouter } from "next/router";
 const cors = Cors();
 
 function QueAns() {
+  const router = useRouter();
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
 
@@ -18,6 +20,7 @@ function QueAns() {
 
     const { answer } = await response.json();
     setAnswer(answer);
+    router.push("/predict");
   };
 
   const handleChange = (event) => {
