@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Cors from "cors";
 import { useRouter } from "next/router";
+import { createContext } from "react";
+import MyContext from "../contexts/MyContext";
 
 const cors = Cors();
 export default function UploadPage() {
@@ -23,9 +25,9 @@ export default function UploadPage() {
       method: "POST",
       body: formData,
     });
-    const { answer } = await response.json();
-    setAnswer(answer);
-    route.push("/Que");
+    // const { ans } = await response.json();
+    // setAnswer(ans);
+    route.push("/Display");
   }
 
   return (

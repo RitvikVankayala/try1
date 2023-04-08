@@ -1,18 +1,22 @@
 import SideSide from "../components/SideSide";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-
-export default function Que() {
-  const [data, setData] = useState([]);
+import MyContext from "../contexts/MyContext";
+import { useContext } from "react";
+export default function Display() {
+  const [data, setData] = useState(["waiting...", "waiting...", "waiting...."]);
+  const [answer, setAnswer] = useState("");
 
   useEffect(() => {
     async function fetchData() {
       const res = await fetch("http://127.0.0.1:5000/api/text");
+
       const json = await res.json();
       setData(json);
     }
     fetchData();
   }, []);
+
   console.log(data);
   return (
     <div
@@ -23,7 +27,11 @@ export default function Que() {
         backgroundSize: "cover",
       }}
     >
-      <SideSide />
+      <SideSide
+        food={data[0].food_name}
+        paragraph={data[1].nutrition_content}
+        paras={data[2].allergic_reaction}
+      />
     </div>
   );
 }
