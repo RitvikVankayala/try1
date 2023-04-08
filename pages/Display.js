@@ -1,7 +1,7 @@
 import SideSide from "../components/SideSide";
 import Image from "next/image";
+import Button from "../components/Button";
 import { useState, useEffect } from "react";
-import MyContext from "../contexts/MyContext";
 import { useContext } from "react";
 export default function Display() {
   const [data, setData] = useState(["waiting...", "waiting...", "waiting...."]);
@@ -27,6 +27,8 @@ export default function Display() {
         backgroundSize: "cover",
       }}
     >
+      <Button href="./New">Button</Button>
+
       <SideSide
         food={data[0].food_name}
         paragraph={data[1].nutrition_content}
