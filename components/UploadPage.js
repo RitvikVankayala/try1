@@ -6,6 +6,7 @@ const cors = Cors();
 export default function UploadPage() {
   const route = useRouter();
   const [picture, setPicture] = useState(null);
+  const [answer, setAnswer] = useState("");
 
   const handlePictureUpload = (event) => {
     const file = event.target.files[0];
@@ -22,12 +23,20 @@ export default function UploadPage() {
       method: "POST",
       body: formData,
     });
+    const { answer } = await response.json();
+    setAnswer(answer);
     route.push("/Que");
   }
 
   return (
     <div
       style={{
+        backgroundImage: `url("https://c8.alamy.com/comp/W20AEP/food-background-with-traditional-ingredients-for-mediterranean-cuisine-over-white-background-top-view-with-copy-space-italian-food-W20AEP.jpg")`,
+        height: "100vh",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+        margin: 0,
+        padding: 0,
         backgroundColor: "#f2f2f2",
         height: "100vh",
         display: "flex",
